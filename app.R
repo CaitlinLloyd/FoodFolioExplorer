@@ -8,35 +8,6 @@ library(tidyr)
 #library(rsconnect)
 library(imager)
 
-
-# dat <- read.csv("mTURK_March2021.csv")
-# source("cleanup1.R")
-# dat <- t
-# types <- dat %>% dplyr::select(starts_with("rating"), "Healthiness",             "Tastiness",              "Umami","choice.rating") %>% colnames ()
-# dat[,types] <- sapply(dat[,types], as.numeric)
-# foods <- unique(dat$stimulus)
-# characteristics <- c("none", colnames(dat)[60:95])
-# fat <- c("all","by high and low")
-# 
-# mod <- lmerTest::lmer(formula=as.formula(paste0("choice.rating ~  (1 + Tastiness + Healthiness + Umami|subjectId) + (1|stimulus)")),dat=dat,control=lmerControl(optimizer="bobyqa",optCtrl=list(maxfun=2e5), calc.derivs = FALSE), contrasts = c("contr.sum"))
-# demo <- ranef(mod)$subjectId[-1,]
-# demo$subjectId <- rownames(demo)
-# health_select <- merge(health_select,demo,by="subjectId")
-# health_select <- health_select[!duplicated(health_select$subjectId),]
-# demo <- dat %>% select(subjectId,age2,gender,income,education,bmi,s.cognitive.restraint)
-# health_select <- merge(health_select,demo)
-# health_select <- health_select[!duplicated(health_select$subjectId),]
-# health_select$age <- as.numeric(health_select$age2)
-# health_select$cognitive.restraint <- health_select$s.cognitive.restraint
-# 
-# means <- dat %>% group_by(food) %>% summarize_at(types, mean,na.rm=TRUE)
-# 
-# choice <- dat %>% group_by(food,choice_bin) %>% count() %>% pivot_wider(1,names_from = 2,values_from = 3)
-# choice$choice.prop <- choice$`1`/(choice$`0` + choice$`1`)
-# means <- merge(means,choice,by="food")
-# 
-# save(health_select, dat,means,types, file = "data.RData")
-setwd("/Users/emilylloyd/Library/CloudStorage/Dropbox/EDRUresources/new")  
 load("data.RData")
 col_frame <- data.frame(col_att=c("#92D895","sandybrown", "plum"),attribute=c("Healthiness","Tastiness","Umami"))
 # Define server function
@@ -138,7 +109,7 @@ server <- function(input, output) {
     Daxa <- fr_char()
     cp <- color_att()
     Daxa$cp <- cp
-    print(Daxa$cp)
+
     plot <- plot_ly(Daxa,x = ~food_attribute,  y = ~choice,name=~food,color = ~cp, colors = c(cp))
     
     #figure  <- figure  %>% add_markers() 
