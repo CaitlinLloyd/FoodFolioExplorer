@@ -7,6 +7,7 @@ library(shinythemes)
 library(tidyr)
 #library(rsconnect)
 library(imager)
+library(plotly)
 
 load("data.RData")
 col_frame <- data.frame(col_att=c("#92D895","sandybrown", "plum"),attribute=c("Healthiness","Tastiness","Umami"))
